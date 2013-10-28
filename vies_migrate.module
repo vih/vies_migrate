@@ -1,0 +1,23 @@
+<?php
+
+/*
+ * You must implement hook_migrate_api(), setting the API level to 2, for
+ * your migration classes to be recognized by the Migrate module.
+ */
+function vies_migrate_migrate_api() {
+  $api = array(
+    'api' => 2,
+    'groups' => array(
+       'news' => array(
+         'title' => t('News Migrations'),
+       ),
+     ),
+    'migrations' => array(
+      'News' => array(
+        'class_name' => 'MigrateNews',
+        'group_name' => 'news',
+      ),
+    ),
+  );
+  return $api;
+}
