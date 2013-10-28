@@ -47,14 +47,14 @@ class MigrateNews extends Migration {
 
     // Parse our body content and update the image uuid paths with
     // local files managed by media module.
-    print $total_img = count($html->find("img"));
+    $total_img = count($html->find("img"));
 
     // If we have img tags.
     if ($total_img > 0) {
 
       // Loop over all instances of them.
       for ($i = 0; $i < $total_img; $i++) {
-        $html->find("img", $i)->src;
+        $featured_image = $html->find("img", $i)->src;
         
         /*
         $this->source = new MigrateSourceSQL($query);
@@ -82,6 +82,13 @@ class MigrateNews extends Migration {
 
       node_save($node);
       */
+      
+      $file = system_retrieve_file($featured_image, 'public://migrated_files', TRUE, FILE_EXISTS_RENAME);
+      if ($file) {
+        print 'succes for ' . $entity->id . "\n";
+        $entity->field_featured_image[LANGUAGE_NONE][0]['fid'] = $file->fid;
+        node_save($entity);
+      }
     }
   }
 }
