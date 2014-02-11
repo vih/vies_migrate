@@ -70,8 +70,8 @@ class MigrateNews extends Migration {
              ->defaultValue('/mnt/files');
         $this->addFieldMapping('destination_file', 'filename');
         */
-        
-        
+        // Breaks only for first image. Could we do something with the other images? 
+        break;
       }
       /*
       // We'll update the body field with the new one.
@@ -93,7 +93,6 @@ class MigrateNews extends Migration {
         $entity->field_featured_image[LANGUAGE_NONE][0]['fid'] = $file->fid;
         node_save($entity);
       }
-      break;
     }
   }
 }
