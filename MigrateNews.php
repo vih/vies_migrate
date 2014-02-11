@@ -86,7 +86,7 @@ class MigrateNews extends Migration {
       
       $file = system_retrieve_file($featured_image, 'public://migrated_files', TRUE, FILE_EXISTS_RENAME);
       if ($file) {
-        print 'succes for ' . $entity->id . "\n";
+        print 'succes for ' . $entity->nid . "\n";
         $entity->field_featured_image[LANGUAGE_NONE][0]['fid'] = $file->fid;
         node_save($entity);
       }
