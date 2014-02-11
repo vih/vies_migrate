@@ -47,7 +47,7 @@ class MigrateNews extends Migration {
     $html = str_get_html($entity->body[LANGUAGE_NONE][0]['value']);
     
     if (!$html) {
-      return;
+      $html = $entity->title;
     }
 
     // Parse our body content and update the image uuid paths with
