@@ -40,6 +40,7 @@ class MigrateNews extends Migration {
   
   function __prepare($row) {
     $row->language = 'da';
+    $row->uid = 184; // Set Jacob as author
   }
   
   function complete($entity, $row) {
