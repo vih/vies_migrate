@@ -44,11 +44,15 @@ class MigrateNews extends Migration {
   
   function complete($entity, $row) {
     $entity->uid = 184; // Set Jacob as author
-    $html = str_get_html($entity->body[LANGUAGE_NONE][0]['value']);
-    
-    if (!$html) {
-      $html = $entity->title;
+
+    $content = $entity->body[LANGUAGE_NONE][0]['value'];
+
+    if (!$content) {
+      $content = '<p>' . $entity->title . '</p>';
     }
+
+    $html = str_get_html($content);
+    
 
     // Parse our body content and update the image uuid paths with
     // local files managed by media module.
