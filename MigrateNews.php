@@ -83,13 +83,18 @@ class MigrateNews extends Migration {
 
       node_save($node);
       */
-      
-      $file = system_retrieve_file($featured_image, 'public://migrated_files', TRUE, FILE_EXISTS_RENAME);
+      $directory = file_build_uri('public://migrated_files');
+      if (!file_prepare_directory($directory, FILE_CREATE_DIRECTORY)) {
+        $directory = NULL;
+      }
+      $file = system_retrieve_file($featured_image, $directory, TRUE, FILE_EXISTS_RENAME);
+      $file_save_data($file);
       if ($file) {
         print 'succes for ' . $entity->nid . "\n";
         $entity->field_featured_image[LANGUAGE_NONE][0]['fid'] = $file->fid;
         node_save($entity);
       }
+      break;
     }
   }
 }
