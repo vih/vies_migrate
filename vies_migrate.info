@@ -4,7 +4,6 @@ package = "Development"
 core = 7.x
 dependencies[] = taxonomy
 dependencies[] = image
-dependencies[] = comment
 dependencies[] = list
 dependencies[] = number
 
