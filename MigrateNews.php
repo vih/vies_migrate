@@ -40,10 +40,10 @@ class MigrateNews extends Migration {
   
   function __prepare($row) {
     $row->language = 'da';
-    $row->uid = 184; // Set Jacob as author
   }
   
   function complete($entity, $row) {
+    $entity->uid = 184; // Set Jacob as author
     $html = str_get_html($entity->body[LANGUAGE_NONE][0]['value']);
 
     // Parse our body content and update the image uuid paths with
